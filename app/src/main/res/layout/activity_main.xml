@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_bg"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="নোটিফিকেশন কন্ট্রোলার"
+            android:textColor="@color/ink"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="যে অ্যাপ বন্ধ করবে, তার নোটিফিকেশন আসার সঙ্গে সঙ্গে লুকিয়ে যাবে। চালু করলে আবার আগের মতো আসবে।"
+            android:textColor="@color/muted"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/ivListenerDot"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/dot_peach" />
+
+            <TextView
+                android:id="@+id/tvListenerState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Notification Access: যাচাই হচ্ছে"
+                android:textColor="@color/ink"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLastBlocked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="শেষ বন্ধ করা নোটিফিকেশন: এখনো নেই"
+            android:textColor="@color/muted"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvSync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="শেষ সিঙ্ক: এখনো হয়নি"
+            android:textColor="@color/muted"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvStatChecked"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/pill_blue"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="টিক দেওয়া ০টি"
+            android:textColor="@color/ink"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvBlockedCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/pill_off"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="বন্ধ ০টি"
+            android:textColor="@color/ink"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvStatOn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/pill_green"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="চালু ০টি"
+            android:textColor="@color/ink"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSync"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_secondary"
+            android:text="এখনই সিঙ্ক করো"
+            android:textColor="@color/ink" />
+
+        <Button
+            android:id="@+id/btnGrant"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_secondary"
+            android:text="Notification Access দাও"
+            android:textColor="@color/ink" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMasterState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="নিয়ন্ত্রণে কোনো অ্যাপ নেই"
+        android:textColor="@color/ink"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnMasterToggle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_master_disabled"
+        android:enabled="false"
+        android:text="আগে নিচে থেকে অ্যাপ যোগ করো"
+        android:textColor="@color/muted"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="প্রধান বোতাম শুধু টিক দেওয়া অ্যাপগুলোর উপর কাজ করে।"
+        android:textColor="@color/muted"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tvLastAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/muted"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnAddApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_secondary"
+        android:text="অ্যাপ যোগ করো"
+        android:textColor="@color/ink" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="উইজেট: হোম স্ক্রিনে অনেকক্ষণ চেপে ধরো, তারপর Widgets থেকে এই অ্যাপের ছোট লোগো উইজেট বসাও। উইজেট বসানোর সময় একটা অ্যাপ বাছতে হবে, তারপর হোম স্ক্রিন থেকেই ওই অ্যাপের লোগোতে চাপ দিয়ে চালু বা বন্ধ করতে পারবে। সবুজ ডট মানে চালু, লাল ডট মানে বন্ধ। উপরের বড় বোতাম চাপলে শুধু টিক দেওয়া অ্যাপগুলো একসঙ্গে চালু বা বন্ধ হবে। প্রতিটা অ্যাপের পাশে শুধু একটা টিক বাক্স আছে, সারি চাপলেই টিক উল্টে যাবে। কোনো সারি অনেকক্ষণ চেপে ধরলে সেটা তালিকা থেকে সরে যাবে।"
+        android:textColor="@color/muted"
+        android:textSize="13sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="যোগ করা অ্যাপ"
+        android:textColor="@color/ink"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/lvApps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivEmptyIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_lock_silent_mode"
+                android:tint="@color/muted" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="এখনো কোনো অ্যাপ যোগ করা হয়নি"
+                android:textColor="@color/ink"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="অ্যাপ যোগ করো চেপে একটা একটা করে অ্যাপ যোগ করো"
+                android:textColor="@color/muted"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="নোট: অ্যাপ প্রতি ১৫ মিনিটে নিজে নিজে সিঙ্ক করে। MIUI সেটিংসে এই অ্যাপের Autostart চালু রাখো, আর ব্যাটারি সেভার No restrictions করো। নইলে রিবুটের পর বা ব্যাকগ্রাউন্ডে সিঙ্ক মিস হতে পারে।"
+        android:textColor="@color/muted"
+        android:textSize="13sp" />
+
+</LinearLayout>

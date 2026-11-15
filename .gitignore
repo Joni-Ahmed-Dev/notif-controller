@@ -1,0 +1,11 @@
+# Secrets — never commit these. The workflow writes google-services.json
+# from the GOOGLE_SERVICES_JSON secret, and the keystore from the
+# NOTIF_DEBUG_KEYSTORE_BASE64 secret.
+google-services.json
+app/google-services.json
+*.keystore
+*.jks
+local.properties
+build/
+app/build/
+.gradle/

@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.joni.notifcontroller'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.joni.notifcontroller'
+        minSdk 26
+        targetSdk 34
+        versionCode 6
+        versionName '1.5'
+    }
+
+    signingConfigs {
+        release {
+            // The v1.0-v1.4 debug keystore, decoded by the workflow from the
+            // NOTIF_DEBUG_KEYSTORE_BASE64 secret into app/notif-debug.keystore.
+            // Same key => v1.5 installs over v1.4 without uninstalling.
+            // Passwords are the same as in the old local build.sh.
+            storeFile file('notif-debug.keystore')
+            storePassword 'android'
+            keyAlias 'notif'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // Use the real key when the workflow decoded it, otherwise fall
+            // back to the debug key so a local assembleRelease still works.
+            if (file('notif-debug.keystore').exists()) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
+            buildConfigField 'String', 'NOTIF_WORKER_URL', '"https://notif-controller.aminuljoni180.workers.dev"'
+            buildConfigField 'String', 'NOTIF_READ_TOKEN', '"' + (System.getenv('NOTIF_READ_TOKEN') ?: '') + '"'
+        }
+        debug {
+            buildConfigField 'String', 'NOTIF_WORKER_URL', '"https://notif-controller.aminuljoni180.workers.dev"'
+            buildConfigField 'String', 'NOTIF_READ_TOKEN', '"' + (System.getenv('NOTIF_READ_TOKEN') ?: '') + '"'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-messaging'
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="48dp"
+    android:layout_height="48dp">
+
+    <ImageButton
+        android:id="@+id/btnWidgetToggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:contentDescription="নোটিফিকেশন চালু বা বন্ধ করো" />
+
+    <ImageView
+        android:id="@+id/ivWidgetDot"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/dot_red" />
+
+</FrameLayout>
