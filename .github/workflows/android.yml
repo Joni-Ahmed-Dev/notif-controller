@@ -1,0 +1,45 @@
+name: Android CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Gradle 8.2
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.2'
+
+      # google-services.json is never committed; it comes from the secret.
+      - name: Write google-services.json
+        run: printf '%s' "${{ secrets.GOOGLE_SERVICES_JSON }}" > app/google-services.json
+
+      # The v1.0-v1.4 debug keystore, so v1.5 installs over v1.4.
+      - name: Write signing keystore
+        run: printf '%s' "${{ secrets.NOTIF_DEBUG_KEYSTORE_BASE64 }}" | base64 -d > app/notif-debug.keystore
+
+      - name: Build release APK
+        env:
+          NOTIF_READ_TOKEN: ${{ secrets.NOTIF_READ_TOKEN }}
+        run: gradle assembleRelease --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: notif-controller-v1.5
+          path: app/build/outputs/apk/release/app-release.apk
