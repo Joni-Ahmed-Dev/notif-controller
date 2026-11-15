@@ -17,8 +17,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      # The runner already ships an Android SDK; setup-android@v3 fails on it
+      # ("Failed to find package 'tools'"), so install what the build needs directly.
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        run: |
+          CT="$ANDROID_HOME/cmdline-tools/latest"
+          [ -d "$CT" ] || CT="$ANDROID_HOME/cmdline-tools/16.0"
+          echo "$CT/bin" >> "$GITHUB_PATH"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          yes | "$CT/bin/sdkmanager" --licenses > /dev/null || true
+          "$CT/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Set up Gradle 8.2
         uses: gradle/actions/setup-gradle@v3
